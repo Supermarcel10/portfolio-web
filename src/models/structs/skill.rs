@@ -1,7 +1,7 @@
 use crate::models::base::entity::Base;
 
 pub struct Skill {
-	base: Base,
+	base: Base, // TODO: Figure out the proper way to do this. Possibly with more macros?
 	name: String,
 	category: SkillCategory,
 	proficiency: Option<u8>,

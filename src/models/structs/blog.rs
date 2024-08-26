@@ -1,6 +1,5 @@
 use crate::models::base::content::Element;
-use crate::models::base::object_store_ref::ObjRef;
-use crate::models::traits::{Attachable, AttachmentType, Describable, Featurable};
+use crate::models::traits::{impl_attachable, impl_describable, impl_featurable};
 
 pub struct Blog {
 	pub slug: String,
@@ -9,28 +8,6 @@ pub struct Blog {
 	pub is_draft: bool
 }
 
-impl Describable for Blog {
-	fn short_description() -> String {
-		todo!()
-	}
-
-	fn long_description() -> Vec<Element> {
-		todo!()
-	}
-}
-
-impl Featurable for Blog {
-	fn is_featured() -> bool {
-		todo!()
-	}
-}
-
-impl Attachable for Blog {
-	fn attachment() -> Option<ObjRef> {
-		todo!()
-	}
-
-	fn attachment_type() -> AttachmentType {
-		todo!()
-	}
-}
+impl_attachable!(Blog);
+impl_describable!(Blog);
+impl_featurable!(Blog);

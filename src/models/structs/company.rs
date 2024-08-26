@@ -1,5 +1,4 @@
-use crate::models::base::object_store_ref::ObjRef;
-use crate::models::traits::{Attachable, AttachmentType};
+use crate::models::traits::{impl_attachable};
 
 pub struct Company {
 	name : String,
@@ -17,12 +16,4 @@ pub enum CompanyType {
 	Client
 }
 
-impl Attachable for Company {
-	fn attachment() -> Option<ObjRef> {
-		todo!()
-	}
-
-	fn attachment_type() -> AttachmentType {
-		todo!()
-	}
-}
+impl_attachable!(Company);
