@@ -1,0 +1,210 @@
+classDiagram
+	class BaseEntity {
+		<<trait>>
+		+String id
+		+DateTime insert_date_time
+		+Option~DateTime~ update_date_time
+		+String created_by
+		+Option~String~ updated_by
+		+bool is_active
+	}
+
+	class Dateable {
+		<<trait>>
+		+DateTime start_date
+		+Option~DateTime~ end_date
+	}
+
+	class Describable {
+		<<trait>>
+		+String short_description
+		+Vec~ContentElement~ long_description_elements
+	}
+
+	class Featurable {
+		<<trait>>
+		+bool is_featured
+	}
+
+	class Attachable {
+		<<trait>>
+		+Option~ObjectStoreReference~ attachment
+		+AttachmentType attachment_type
+	}
+
+	class AttachmentType {
+		<<enum>>
+		Image
+		Document
+		Certificate
+		Audio
+		Video
+		Other(String custom_type)
+	}
+
+	class ObjectStoreReference {
+		<<struct>>
+		+String object_store_urn
+	}
+
+	class Achievable {
+		<<trait>>
+		+Vec~String~ achievements
+	}
+
+	class Gradable {
+		<<trait>>
+		+Option~String~ grade
+	}
+
+	class Asset {
+		<<trait>>
+		+String title
+		+Vec~Skill~ skills
+		+Vec~Box~dyn Asset~~ related_assets
+	}
+
+	class Project {
+		<<struct>>
+		+ProjectStatus status
+		+Vec~String~ challenges
+		+Vec~String~ outcomes
+		+Option~String~ category
+		+Option~String~ github_url
+		+Option~String~ deployment_url
+	}
+
+	class ProjectStatus {
+		<<enum>>
+		Planning
+		Designing
+		Developing
+		Released(String version)
+		Updating(String current_version, String target_version)
+	}
+
+	class Education {
+		<<struct>>
+		+Company institution
+		+String degree
+		+String field_of_study
+		+Vec~Module~ modules
+	}
+
+	class Module {
+		<<struct>>
+		+Option~String~ code
+	}
+
+	class Job {
+		<<struct>>
+		+Company company
+		+Vec~String~ responsibilities
+	}
+
+	class Company {
+		<<struct>>
+		+String name
+		+Option~String~ location
+		+Option~String~ industry
+		+Vec~CompanyType~ types
+	}
+
+	class CompanyType {
+		<<enum>>
+		EducationalInstitution
+		Client
+		Startup
+		Corporation
+		NonProfit
+		Government
+		OpenSourceOrganization
+	}
+
+	class Blog {
+		<<struct>>
+		+String slug
+		+Vec~String~ tags
+		+Vec~ContentElement~ content
+		+bool is_draft
+	}
+
+	class Skill {
+		<<struct>>
+		+String name
+		+SkillCategory category
+		+Option~u8~ proficiency
+		+Option~String~ description
+	}
+
+	class SkillCategory {
+		<<enum>>
+		SoftSkill(String subcategory)
+		Technology(String domain, String version)
+		Tool(String vendor, Option~String~ version)
+	}
+
+	class Testimonial {
+		<<struct>>
+		+TestimonialAuthor author
+		+Vec~String~ content
+		+Option~DateTime~ date
+	}
+
+	class TestimonialAuthor {
+		<<enum>>
+		Individual(String name, Option~ObjectStoreReference~ picture, Vec~String~ contact_information)
+		CompanyRepresentative(String name, Option~ObjectStoreReference~ picture, Vec~String~ contact_information, Company company, String role)
+	}
+
+	class ContentElement {
+		<<enum>>
+		HTMLElement(String html)
+		ImageElement(ObjectStoreReference source)
+		CodeBlock(String language, String code)
+		Quote(String text, Option~String~ author)
+	}
+
+	BaseEntity <|.. Asset
+	BaseEntity <|.. Company
+	BaseEntity <|.. Skill
+	Asset <|.. Project
+	Asset <|.. Education
+	Asset <|.. Module
+	Asset <|.. Job
+	Asset <|.. Blog
+	Asset <|.. Testimonial
+
+	Dateable <|.. Project
+	Describable <|.. Project
+	Featurable <|.. Project
+	Attachable <|.. Project : has cover image
+
+	Dateable <|.. Education
+	Describable <|.. Education
+	Achievable <|.. Education
+	Attachable <|.. Education : has grade certificate
+	Gradable <|.. Education
+
+	Dateable <|.. Module
+	Describable <|.. Module
+	Gradable <|.. Module
+
+	Dateable <|.. Job
+	Describable <|.. Job
+	Achievable <|.. Job
+	Attachable <|.. Job : has supporting documents
+
+	Attachable <|.. Company : has logo
+
+	Describable <|.. Blog
+	Featurable <|.. Blog
+	Attachable <|.. Blog : has cover image
+
+	Asset "1" -- "0..*" Asset : references
+	Education "1" -- "0..*" Module : contains
+	Company "1" -- "*" CompanyType : has
+	Asset "1" -- "0..*" Skill : contains
+	Skill "1" -- "1" SkillCategory : categorized as
+	Testimonial "1" -- "1" TestimonialAuthor : written by
+	Project "1" -- "1" ProjectStatus : has
