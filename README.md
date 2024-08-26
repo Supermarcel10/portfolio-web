@@ -5,10 +5,10 @@
 
 # Design
 ### VERSION 1 (Rough Sketch)
-{{< include docs/design/version1.mmd >}}
+{{< include docs/designs/version1.mmd >}}
 
 ### VERSION 2 (Refined Rust Tailored)
-[verison3](docs/design/version3.mermaid)
+![verison2](docs/designs/version2.mmd)
 
 ## Purpose
 
