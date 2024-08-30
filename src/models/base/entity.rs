@@ -18,28 +18,36 @@ pub struct Base {
 	pub is_active: bool,
 }
 
-impl BaseEntity for Base {
-	fn id(&self) -> &str {
-		&self.id
-	}
+macro_rules! impl_base {
+	($type:ty) => {
+		impl BaseEntity for $type {
+			fn id(&self) -> &str {
+				todo!()
+			}
 
-	fn insert_date_time(&self) -> DateTime<Utc> {
-		self.insert_date_time
-	}
+			fn insert_date_time(&self) -> DateTime<Utc> {
+				todo!()
+			}
 
-	fn update_date_time(&self) -> Option<DateTime<Utc>> {
-		self.update_date_time
-	}
+			fn update_date_time(&self) -> Option<DateTime<Utc>> {
+				todo!()
+			}
 
-	fn created_by(&self) -> &str {
-		&self.created_by
-	}
+			fn created_by(&self) -> &str {
+				todo!()
+			}
 
-	fn updated_by(&self) -> Option<&str> {
-		self.updated_by.as_deref()
-	}
+			fn updated_by(&self) -> Option<&str> {
+				todo!()
+			}
 
-	fn is_active(&self) -> bool {
-		self.is_active
+			fn is_active(&self) -> bool {
+				todo!()
+			}
+		}
 	}
 }
+
+pub (crate) use {
+	impl_base
+};

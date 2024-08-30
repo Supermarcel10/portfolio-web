@@ -1,4 +1,3 @@
-use chrono::{DateTime, Utc};
 use crate::models::base::entity::{Base, BaseEntity};
 use super::skill::Skill;
 
@@ -15,42 +14,26 @@ pub struct Asset {
 	pub related_assets: Vec<Box<dyn AssetEntity>>,
 }
 
-impl BaseEntity for Asset {
-	fn id(&self) -> &str {
-		self.base.id()
-	}
+macro_rules! impl_asset {
+	($type:ty) => {
+		impl AssetEntity for $type {
+			fn title(&self) -> &str {
+				todo!()
+			}
 
-	fn insert_date_time(&self) -> DateTime<Utc> {
-		self.base.insert_date_time()
-	}
+			fn skills(&self) -> &[Skill] {
+				todo!()
+			}
 
-	fn update_date_time(&self) -> Option<DateTime<Utc>> {
-		self.base.update_date_time()
-	}
+			fn related_assets(&self) -> &[Box<dyn AssetEntity>] {
+				todo!()
+			}
+		}
 
-	fn created_by(&self) -> &str {
-		self.base.created_by()
-	}
-
-	fn updated_by(&self) -> Option<&str> {
-		self.base.updated_by()
-	}
-
-	fn is_active(&self) -> bool {
-		self.base.is_active()
+		impl_base!($type);
 	}
 }
 
-impl AssetEntity for Asset {
-	fn title(&self) -> &str {
-		&self.title
-	}
-
-	fn skills(&self) -> &[Skill] {
-		&self.skills
-	}
-
-	fn related_assets(&self) -> &[Box<dyn AssetEntity>] {
-		&self.related_assets
-	}
-}
+pub (crate) use {
+	impl_asset
+};
