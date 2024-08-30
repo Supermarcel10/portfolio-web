@@ -21,7 +21,7 @@ pub struct Base {
 #[macro_export]
 macro_rules! impl_base {
 	($type:ty) => {
-		impl $crate::models::base::entity::BaseEntity for $type {
+		impl $crate::base::entity::BaseEntity for $type {
 			fn id(&self) -> &str {
 				todo!()
 			}

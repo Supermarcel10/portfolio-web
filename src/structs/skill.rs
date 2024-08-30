@@ -1,4 +1,4 @@
-use crate::models::base::entity::impl_base;
+use crate::base::entity::impl_base;
 
 pub struct Skill {
 	name: String,

@@ -1,5 +1,5 @@
 use crate::{impl_asset, impl_attachable, impl_describable, impl_duration_dateable, impl_featurable};
-use crate::models::base::entity::Base;
+use crate::base::entity::Base;
 
 pub struct Project {
 	pub base: Base, // TODO: Figure out the proper way to do this. Possibly with more macros?

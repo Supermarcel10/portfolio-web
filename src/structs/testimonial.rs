@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 use chrono::{DateTime, Utc};
-use crate::models::base::object_store_ref::ObjRef;
-use crate::models::structs::asset::impl_asset;
-use crate::models::structs::company::Company;
+use crate::base::object_store_ref::ObjRef;
+use crate::structs::asset::impl_asset;
+use crate::structs::company::Company;
 
 pub struct Testimonial {
 	author: TestimonialAuthor,

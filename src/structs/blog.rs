@@ -1,5 +1,5 @@
 use crate::{impl_asset, impl_attachable, impl_describable, impl_featurable};
-use crate::models::base::content::Element;
+use crate::base::content::Element;
 
 pub struct Blog {
 	pub slug: String,

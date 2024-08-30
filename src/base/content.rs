@@ -1,4 +1,4 @@
-use crate::models::base::object_store_ref::ObjRef;
+use crate::base::object_store_ref::ObjRef;
 
 pub enum Element {
 	HTMLElement { html: String },

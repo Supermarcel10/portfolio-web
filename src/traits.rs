@@ -1,5 +1,5 @@
 use chrono::{DateTime, Utc};
-use crate::models::base::{object_store_ref::ObjRef, content::Element};
+use crate::base::{object_store_ref::ObjRef, content::Element};
 
 pub trait DurationDateable {
 	fn start_date() -> DateTime<Utc>;
@@ -41,7 +41,7 @@ pub trait Gradable {
 #[macro_export]
 macro_rules! impl_duration_dateable {
 	($type:ty) => {
-		impl $crate::models::traits::DurationDateable for $type {
+		impl $crate::traits::DurationDateable for $type {
 			fn start_date() -> chrono::DateTime<chrono::Utc> {
 				todo!()
 			}
@@ -56,12 +56,12 @@ macro_rules! impl_duration_dateable {
 #[macro_export]
 macro_rules! impl_describable {
 	($type:ty) => {
-		impl $crate::models::traits::Describable for $type {
+		impl $crate::traits::Describable for $type {
 			fn short_description() -> String {
 				todo!()
 			}
 
-			fn long_description() -> Vec<$crate::models::base::content::Element> {
+			fn long_description() -> Vec<$crate::base::content::Element> {
 				todo!()
 			}
 		}
@@ -71,7 +71,7 @@ macro_rules! impl_describable {
 #[macro_export]
 macro_rules! impl_featurable {
 	($type:ty) => {
-		impl $crate::models::traits::Featurable for $type {
+		impl $crate::traits::Featurable for $type {
 			fn is_featured() -> bool {
 				todo!()
 			}
@@ -82,12 +82,12 @@ macro_rules! impl_featurable {
 #[macro_export]
 macro_rules! impl_attachable {
 	($type:ty) => {
-		impl $crate::models::traits::Attachable for $type {
-			fn attachment() -> Option<$crate::models::base::object_store_ref::ObjRef> {
+		impl $crate::traits::Attachable for $type {
+			fn attachment() -> Option<$crate::base::object_store_ref::ObjRef> {
 				todo!()
 			}
 
-			fn attachment_type() -> $crate::models::traits::AttachmentType {
+			fn attachment_type() -> $crate::traits::AttachmentType {
 				todo!()
 			}
 		}
@@ -97,7 +97,7 @@ macro_rules! impl_attachable {
 #[macro_export]
 macro_rules! impl_achievable {
 	($type:ty) => {
-		impl $crate::models::traits::Achievable for $type {
+		impl $crate::traits::Achievable for $type {
 			fn achievements() -> Vec<String> {
 				todo!()
 			}
@@ -108,7 +108,7 @@ macro_rules! impl_achievable {
 #[macro_export]
 macro_rules! impl_gradeable {
 	($type:ty) => {
-		impl $crate::models::traits::Gradable for $type {
+		impl $crate::traits::Gradable for $type {
 			fn grade(&self) -> String {
 				todo!()
 			}
