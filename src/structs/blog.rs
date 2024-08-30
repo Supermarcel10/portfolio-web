@@ -1,11 +1,11 @@
-use crate::{impl_asset, impl_attachable, impl_describable, impl_featurable};
 use crate::base::content::Element;
+use crate::{impl_asset, impl_attachable, impl_describable, impl_featurable};
 
 pub struct Blog {
 	pub slug: String,
 	pub tags: Vec<String>,
 	pub content: Vec<Element>,
-	pub is_draft: bool
+	pub is_draft: bool,
 }
 
 impl_asset!(Blog);

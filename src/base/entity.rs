@@ -46,7 +46,7 @@ macro_rules! impl_base {
 				todo!()
 			}
 		}
-	}
+	};
 }
 
 pub use impl_base;

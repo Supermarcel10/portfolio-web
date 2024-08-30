@@ -32,7 +32,7 @@ macro_rules! impl_asset {
 		}
 
 		$crate::impl_base!($type);
-	}
+	};
 }
 
 pub use impl_asset;

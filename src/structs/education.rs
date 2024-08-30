@@ -1,15 +1,18 @@
-use crate::{impl_achievable, impl_asset, impl_attachable, impl_describable, impl_duration_dateable, impl_gradeable};
 use super::company::Company;
+use crate::{
+	impl_achievable, impl_asset, impl_attachable, impl_describable, impl_duration_dateable,
+	impl_gradeable,
+};
 
 pub struct Education {
-	institution: Company,
-	degree: String,
-	field_of_study: String,
-	modules: Vec<Module>
+	pub institution: Company,
+	pub degree: String,
+	pub field_of_study: String,
+	pub modules: Vec<Module>,
 }
 
 pub struct Module {
-	code: Option<String>
+	pub code: Option<String>,
 }
 
 impl_asset!(Education);

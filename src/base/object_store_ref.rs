@@ -1,3 +1,3 @@
 pub struct ObjRef {
-	urn: String
+	pub urn: String,
 }

@@ -1,5 +1,5 @@
+use crate::base::{content::Element, object_store_ref::ObjRef};
 use chrono::{DateTime, Utc};
-use crate::base::{object_store_ref::ObjRef, content::Element};
 
 pub trait DurationDateable {
 	fn start_date() -> DateTime<Utc>;
@@ -20,13 +20,13 @@ pub trait Attachable {
 	fn attachment_type() -> AttachmentType;
 }
 
-pub enum AttachmentType{
+pub enum AttachmentType {
 	Image,
 	Document,
 	Certificate,
 	Audio,
 	Video,
-	Other { custom_type: String }
+	Other { custom_type: String },
 }
 
 pub trait Achievable {
@@ -50,7 +50,7 @@ macro_rules! impl_duration_dateable {
 				todo!()
 			}
 		}
-	}
+	};
 }
 
 #[macro_export]
@@ -65,7 +65,7 @@ macro_rules! impl_describable {
 				todo!()
 			}
 		}
-	}
+	};
 }
 
 #[macro_export]
@@ -76,7 +76,7 @@ macro_rules! impl_featurable {
 				todo!()
 			}
 		}
-	}
+	};
 }
 
 #[macro_export]
@@ -91,7 +91,7 @@ macro_rules! impl_attachable {
 				todo!()
 			}
 		}
-	}
+	};
 }
 
 #[macro_export]
@@ -102,7 +102,7 @@ macro_rules! impl_achievable {
 				todo!()
 			}
 		}
-	}
+	};
 }
 
 #[macro_export]
@@ -117,14 +117,10 @@ macro_rules! impl_gradeable {
 				todo!()
 			}
 		}
-	}
+	};
 }
 
 pub use {
-	impl_duration_dateable,
-	impl_describable,
-	impl_featurable,
-	impl_attachable,
-	impl_achievable,
-	impl_gradeable
+	impl_achievable, impl_attachable, impl_describable, impl_duration_dateable, impl_featurable,
+	impl_gradeable,
 };

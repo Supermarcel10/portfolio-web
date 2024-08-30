@@ -1,10 +1,10 @@
 use crate::{impl_attachable, impl_base};
 
 pub struct Company {
-	pub name : String,
-	pub location : Option<String>,
-	pub industry : Option<String>,
-	pub company_type : CompanyType
+	pub name: String,
+	pub location: Option<String>,
+	pub industry: Option<String>,
+	pub company_type: CompanyType,
 }
 
 pub enum CompanyType {
@@ -13,7 +13,7 @@ pub enum CompanyType {
 	Startup,
 	Government,
 	NonProfit,
-	Client
+	Client,
 }
 
 impl_base!(Company);
