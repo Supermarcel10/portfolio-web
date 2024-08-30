@@ -1,8 +1,12 @@
 [package]
-name = "portfolio-web-backend"
+name = "portfolio_web_backend"
 version = "0.0.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "portfolio_web_backend"
+path = "src/lib.rs"
 
 [dependencies]
+chrono = "0.4.38"
