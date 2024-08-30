@@ -1,3 +1,4 @@
+use crate::models::base::entity::impl_base;
 use crate::models::traits::{impl_attachable};
 
 pub struct Company {
@@ -16,4 +17,5 @@ pub enum CompanyType {
 	Client
 }
 
+impl_base!(Company);
 impl_attachable!(Company);

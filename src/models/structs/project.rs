@@ -1,4 +1,5 @@
-use crate::models::base::entity::Base;
+use crate::models::base::entity::{impl_base, Base};
+use crate::models::structs::asset::impl_asset;
 use crate::models::traits::{impl_attachable, impl_describable, impl_duration_dateable, impl_featurable};
 
 pub struct Project {
@@ -19,6 +20,7 @@ pub enum ProjectStatus {
 	Updating { current_version: String, target_version: String }
 }
 
+impl_asset!(Project);
 impl_attachable!(Project);
 impl_describable!(Project);
 impl_duration_dateable!(Project);
