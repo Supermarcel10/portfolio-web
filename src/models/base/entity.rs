@@ -18,18 +18,19 @@ pub struct Base {
 	pub is_active: bool,
 }
 
+#[macro_export]
 macro_rules! impl_base {
 	($type:ty) => {
-		impl BaseEntity for $type {
+		impl $crate::models::base::entity::BaseEntity for $type {
 			fn id(&self) -> &str {
 				todo!()
 			}
 
-			fn insert_date_time(&self) -> DateTime<Utc> {
+			fn insert_date_time(&self) -> chrono::DateTime<chrono::Utc> {
 				todo!()
 			}
 
-			fn update_date_time(&self) -> Option<DateTime<Utc>> {
+			fn update_date_time(&self) -> Option<chrono::DateTime<chrono::Utc>> {
 				todo!()
 			}
 
@@ -48,6 +49,4 @@ macro_rules! impl_base {
 	}
 }
 
-pub (crate) use {
-	impl_base
-};
+pub use impl_base;

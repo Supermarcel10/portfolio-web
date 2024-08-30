@@ -1,5 +1,4 @@
-use crate::models::base::entity::impl_base;
-use crate::models::traits::{impl_attachable};
+use crate::{impl_attachable, impl_base};
 
 pub struct Company {
 	name : String,

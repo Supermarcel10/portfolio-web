@@ -1,6 +1,5 @@
+use crate::{impl_asset, impl_attachable, impl_describable, impl_featurable};
 use crate::models::base::content::Element;
-use crate::models::structs::asset::impl_asset;
-use crate::models::traits::{impl_attachable, impl_describable, impl_featurable};
 
 pub struct Blog {
 	pub slug: String,

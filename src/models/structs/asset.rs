@@ -1,5 +1,5 @@
-use crate::models::base::entity::{Base, BaseEntity};
 use super::skill::Skill;
+use crate::models::base::entity::{Base, BaseEntity};
 
 pub trait AssetEntity: BaseEntity {
 	fn title(&self) -> &str;
@@ -14,26 +14,25 @@ pub struct Asset {
 	pub related_assets: Vec<Box<dyn AssetEntity>>,
 }
 
+#[macro_export]
 macro_rules! impl_asset {
 	($type:ty) => {
-		impl AssetEntity for $type {
+		impl $crate::models::structs::asset::AssetEntity for $type {
 			fn title(&self) -> &str {
 				todo!()
 			}
 
-			fn skills(&self) -> &[Skill] {
+			fn skills(&self) -> &[$crate::models::structs::skill::Skill] {
 				todo!()
 			}
 
-			fn related_assets(&self) -> &[Box<dyn AssetEntity>] {
+			fn related_assets(&self) -> &[Box<dyn $crate::models::structs::asset::AssetEntity>] {
 				todo!()
 			}
 		}
 
-		impl_base!($type);
+		$crate::impl_base!($type);
 	}
 }
 
-pub (crate) use {
-	impl_asset
-};
+pub use impl_asset;

@@ -1,5 +1,4 @@
-use crate::models::structs::asset::impl_asset;
-use crate::models::traits::{impl_achievable, impl_attachable, impl_describable, impl_duration_dateable};
+use crate::{impl_achievable, impl_asset, impl_attachable, impl_describable, impl_duration_dateable};
 use super::company::Company;
 
 pub struct Job {

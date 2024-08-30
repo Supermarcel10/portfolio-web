@@ -1,5 +1,4 @@
-use crate::models::structs::asset::impl_asset;
-use crate::models::traits::{impl_duration_dateable, impl_describable, impl_achievable, impl_attachable, impl_gradeable};
+use crate::{impl_achievable, impl_asset, impl_attachable, impl_describable, impl_duration_dateable, impl_gradeable};
 use super::company::Company;
 
 pub struct Education {

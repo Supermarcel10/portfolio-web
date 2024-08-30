@@ -38,37 +38,40 @@ pub trait Gradable {
 	fn is_passing(&self) -> bool;
 }
 
+#[macro_export]
 macro_rules! impl_duration_dateable {
 	($type:ty) => {
-		impl DurationDateable for $type {
-			fn start_date(&self) -> DateTime<Utc> {
+		impl $crate::models::traits::DurationDateable for $type {
+			fn start_date() -> chrono::DateTime<chrono::Utc> {
 				todo!()
 			}
 
-			fn end_date() -> Option<DateTime<Utc>> {
+			fn end_date() -> Option<chrono::DateTime<chrono::Utc>> {
 				todo!()
 			}
 		}
 	}
 }
 
+#[macro_export]
 macro_rules! impl_describable {
 	($type:ty) => {
-		impl Describable for $type {
+		impl $crate::models::traits::Describable for $type {
 			fn short_description() -> String {
 				todo!()
 			}
 
-			fn long_description() -> Vec<Element> {
+			fn long_description() -> Vec<$crate::models::base::content::Element> {
 				todo!()
 			}
 		}
 	}
 }
 
+#[macro_export]
 macro_rules! impl_featurable {
 	($type:ty) => {
-		impl Featurable for $type {
+		impl $crate::models::traits::Featurable for $type {
 			fn is_featured() -> bool {
 				todo!()
 			}
@@ -76,23 +79,25 @@ macro_rules! impl_featurable {
 	}
 }
 
+#[macro_export]
 macro_rules! impl_attachable {
 	($type:ty) => {
-		impl Attachable for $type {
-			fn attachment() -> Option<ObjRef> {
+		impl $crate::models::traits::Attachable for $type {
+			fn attachment() -> Option<$crate::models::base::object_store_ref::ObjRef> {
 				todo!()
 			}
 
-			fn attachment_type() -> AttachmentType {
+			fn attachment_type() -> $crate::models::traits::AttachmentType {
 				todo!()
 			}
 		}
 	}
 }
 
+#[macro_export]
 macro_rules! impl_achievable {
 	($type:ty) => {
-		impl Achievable for $type {
+		impl $crate::models::traits::Achievable for $type {
 			fn achievements() -> Vec<String> {
 				todo!()
 			}
@@ -100,9 +105,10 @@ macro_rules! impl_achievable {
 	}
 }
 
+#[macro_export]
 macro_rules! impl_gradeable {
 	($type:ty) => {
-		impl Gradable for $type {
+		impl $crate::models::traits::Gradable for $type {
 			fn grade(&self) -> String {
 				todo!()
 			}
@@ -114,7 +120,7 @@ macro_rules! impl_gradeable {
 	}
 }
 
-pub (crate) use {
+pub use {
 	impl_duration_dateable,
 	impl_describable,
 	impl_featurable,

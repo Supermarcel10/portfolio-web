@@ -1,7 +1,6 @@
-use crate::models::base::entity::{impl_base, Base};
+use crate::models::base::entity::impl_base;
 
 pub struct Skill {
-	base: Base, // TODO: Figure out the proper way to do this. Possibly with more macros?
 	name: String,
 	category: SkillCategory,
 	proficiency: Option<u8>,
