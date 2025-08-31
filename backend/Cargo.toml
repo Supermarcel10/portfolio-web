@@ -8,5 +8,6 @@ name = "portfolio_web_backend"
 path = "src/main.rs"
 
 [dependencies]
+shared = { path = "../shared" }
 loco-rs = { version = "0.16.3", features = ["default"] }
 loco-openapi = { version = "0.1.2", features = ["default"] }

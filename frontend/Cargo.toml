@@ -8,4 +8,5 @@ name = "portfolio_web_frontend"
 path = "src/main.rs"
 
 [dependencies]
+shared = { path = "../shared" }
 yew = { version = "0.21.0", features = ["default"] }
