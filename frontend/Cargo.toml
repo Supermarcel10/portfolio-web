@@ -1,0 +1,11 @@
+[package]
+name = "portfolio_web_frontend"
+version = "0.0.1"
+edition = "2024"
+
+[[bin]]
+name = "portfolio_web_frontend"
+path = "src/main.rs"
+
+[dependencies]
+yew = { version = "0.21.0", features = ["default"] }

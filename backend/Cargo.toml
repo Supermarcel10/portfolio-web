@@ -1,0 +1,12 @@
+[package]
+name = "portfolio_web_backend"
+version = "0.0.1"
+edition = "2024"
+
+[[bin]]
+name = "portfolio_web_backend"
+path = "src/main.rs"
+
+[dependencies]
+loco-rs = { version = "0.16.3", features = ["default"] }
+loco-openapi = { version = "0.1.2", features = ["default"] }
