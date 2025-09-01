@@ -14,5 +14,5 @@ async fn healthcheck() -> Result<Response> {
 }
 
 pub fn routes() -> Routes {
-    Routes::new().add("/healthcheck", get(healthcheck))
+    Routes::new().add("/api/healthcheck", get(healthcheck))
 }

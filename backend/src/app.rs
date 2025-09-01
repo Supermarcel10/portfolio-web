@@ -43,8 +43,16 @@ impl Hooks for App {
     }
 
     fn routes(_ctx: &AppContext) -> AppRoutes {
-        AppRoutes::with_default_routes()
-            .add_route(controllers::healthcheck::routes())
+        use controllers::*;
+        use controllers::structures::*;
+
+        AppRoutes::empty()
+            .add_route(healthcheck::routes())
+            .add_route(education::routes())
+            .add_route(job::routes())
+            .add_route(project::routes())
+            .add_route(skill::routes())
+            .add_route(testimonial::routes())
     }
 
     async fn connect_workers(ctx: &AppContext, queue: &Queue) -> Result<()> {
