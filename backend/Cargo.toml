@@ -20,7 +20,7 @@ regex = { version = "1.11.1" }
 
 [[bin]]
 name = "backend"
-path = "src/bin/main.rs"
+path = "src/main.rs"
 required-features = []
 
 [dev-dependencies]

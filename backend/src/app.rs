@@ -9,17 +9,12 @@ use loco_rs::{
     task::Tasks,
     Result,
 };
-
-#[allow(unused_imports)]
-use crate::{controllers, tasks, workers::downloader::DownloadWorker};
+use crate::{controllers, workers::downloader::DownloadWorker};
 
 pub struct App;
+
 #[async_trait]
 impl Hooks for App {
-    fn app_name() -> &'static str {
-        env!("CARGO_CRATE_NAME")
-    }
-
     fn app_version() -> String {
         format!(
             "{} ({})",
@@ -28,6 +23,10 @@ impl Hooks for App {
                 .or(option_env!("GITHUB_SHA"))
                 .unwrap_or("dev")
         )
+    }
+
+    fn app_name() -> &'static str {
+        env!("CARGO_CRATE_NAME")
     }
 
     async fn boot(
@@ -43,9 +42,10 @@ impl Hooks for App {
     }
 
     fn routes(_ctx: &AppContext) -> AppRoutes {
-        AppRoutes::with_default_routes() // controller routes below
+        AppRoutes::with_default_routes()
             .add_route(controllers::home::routes())
     }
+
     async fn connect_workers(ctx: &AppContext, queue: &Queue) -> Result<()> {
         queue.register(DownloadWorker::build(ctx)).await?;
         Ok(())
