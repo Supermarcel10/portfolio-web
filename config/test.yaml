@@ -1,0 +1,13 @@
+# Logger Configuration
+logger:
+  enable: false
+
+# Web Server Configuration
+server:
+  port: 5150
+  binding: localhost
+  host: http://localhost
+
+# Background Worker Configuration
+workers:
+  mode: ForegroundBlocking

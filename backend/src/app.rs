@@ -1,0 +1,67 @@
+use async_trait::async_trait;
+use loco_rs::{
+    app::{AppContext, Hooks, Initializer},
+    bgworker::{BackgroundWorker, Queue},
+    boot::{create_app, BootResult, StartMode},
+    config::Config,
+    controller::AppRoutes,
+    environment::Environment,
+    task::Tasks,
+    Result,
+};
+use crate::{controllers, workers::downloader::DownloadWorker};
+
+
+pub struct App;
+
+#[async_trait]
+impl Hooks for App {
+    fn app_version() -> String {
+        format!(
+            "{} ({})",
+            env!("CARGO_PKG_VERSION"),
+            option_env!("BUILD_SHA")
+                .or(option_env!("GITHUB_SHA"))
+                .unwrap_or("dev")
+        )
+    }
+
+    fn app_name() -> &'static str {
+        env!("CARGO_CRATE_NAME")
+    }
+
+    async fn boot(
+        mode: StartMode,
+        environment: &Environment,
+        config: Config,
+    ) -> Result<BootResult> {
+        create_app::<Self>(mode, environment, config).await
+    }
+
+    async fn initializers(_ctx: &AppContext) -> Result<Vec<Box<dyn Initializer>>> {
+        Ok(vec![])
+    }
+
+    fn routes(_ctx: &AppContext) -> AppRoutes {
+        use controllers::*;
+        use controllers::structures::*;
+
+        AppRoutes::empty()
+            .add_route(healthcheck::routes())
+            .add_route(education::routes())
+            .add_route(job::routes())
+            .add_route(project::routes())
+            .add_route(skill::routes())
+            .add_route(testimonial::routes())
+    }
+
+    async fn connect_workers(ctx: &AppContext, queue: &Queue) -> Result<()> {
+        queue.register(DownloadWorker::build(ctx)).await?;
+        Ok(())
+    }
+
+    #[allow(unused_variables)]
+    fn register_tasks(tasks: &mut Tasks) {
+        // tasks-inject (do not remove)
+    }
+}

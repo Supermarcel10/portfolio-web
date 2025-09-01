@@ -1,12 +1,31 @@
 [package]
-name = "portfolio_web_backend"
-version = "0.0.1"
+name = "backend"
+version = "0.1.0"
 edition = "2024"
-
-[[bin]]
-name = "portfolio_web_backend"
-path = "src/main.rs"
+publish = false
+default-run = "backend"
 
 [dependencies]
-loco-rs = { version = "0.16.3", features = ["default"] }
-loco-openapi = { version = "0.1.2", features = ["default"] }
+loco-rs = { version = "0.16.3", default-features = false, features = ["cli", "bg_redis"] }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = { version = "1.0.143" }
+tokio = { version = "1.47.1", default-features = false, features = [
+  "rt-multi-thread"
+] }
+async-trait = { version = "0.1.89" }
+axum = { version = "0.8.4", default-features = false, features = []}
+chrono = { version = "0.4.41", default-features = false, features = ["now", "serde"] }
+tracing = { version = "0.1.41" }
+tracing-subscriber = { version = "0.3.20", features = ["env-filter", "json"] }
+regex = { version = "1.11.2" }
+
+[[bin]]
+name = "backend"
+path = "src/main.rs"
+required-features = []
+
+[dev-dependencies]
+loco-rs = { version = "0.16.3", default-features = false, features = ["testing"] }
+serial_test = { version = "3.2.0" }
+rstest = { version = "0.26.1" }
+insta = { version = "1.43.1", features = ["redactions", "yaml", "filters"] }
