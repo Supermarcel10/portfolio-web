@@ -1,0 +1,26 @@
+# Logger Configuration
+logger:
+  enable: true
+  pretty_backtrace: false
+  level: info
+  format: json
+
+# Web Server Configuration
+server:
+  port: {{ get_env(name="NODE_PORT", default=5150) }}
+  host: http://localhost
+  middlewares:
+    logger:
+      enable: true
+    limit_payload:
+      enable: true
+      body_limit: 5mb
+    timeout_request:
+      enable: true
+      timeout: 5000
+    cors:
+      enable: true
+
+# Background Worker Configuration
+workers:
+  mode: BackgroundAsync
